@@ -32,9 +32,6 @@ SynthFrameworkAudioProcessor::SynthFrameworkAudioProcessor()
 #endif
 {
 
-	//initialize parameter values
-	attackTime = 0.1f;
-
 	//clear out any garbage values that may be left over in memory
 	mSynth.clearVoices();
 
@@ -168,11 +165,15 @@ void SynthFrameworkAudioProcessor::processBlock (AudioBuffer<float>& buffer, Mid
 	{
 		if ((mVoice = dynamic_cast<SynthVoice*>(mSynth.getVoice(i))))
 		{
-			mVoice->getParameters(parameterTree.getRawParameterValue("Attack"),
+			mVoice->setOscillatorParameters(parameterTree.getRawParameterValue("Attack"),
 									parameterTree.getRawParameterValue("Decay"),
 									parameterTree.getRawParameterValue("Sustain"),
-									parameterTree.getRawParameterValue("Release"));
-			mVoice->setOscillatorType(parameterTree.getRawParameterValue("WaveType"));
+									parameterTree.getRawParameterValue("Release"),
+									parameterTree.getRawParameterValue("WaveType"));
+
+			mVoice->setFilterParameters(parameterTree.getRawParameterValue("FilterType"),
+										parameterTree.getRawParameterValue("FilterCutoff"),
+										parameterTree.getRawParameterValue("FilterResonance"));
 		}
 	}
 

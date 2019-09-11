@@ -26,6 +26,10 @@ MainPanel::MainPanel(SynthFrameworkAudioProcessor* inProcessor)
 	mADSRPanel->setTopLeftPosition(0, OSCILLATOR_PANEL_HEIGHT);
 	addAndMakeVisible(mADSRPanel);
 
+	mFilterPanel = new FilterPanel(inProcessor);
+	mFilterPanel->setTopLeftPosition(ADSR_PANEL_WIDTH, OSCILLATOR_PANEL_HEIGHT);
+	addAndMakeVisible(mFilterPanel);
+
 }
 
 MainPanel::~MainPanel()

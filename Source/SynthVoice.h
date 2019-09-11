@@ -25,28 +25,24 @@ public:
 		return dynamic_cast<SynthSound*>(sound) != nullptr;
 	}
 
-	void getParameters(float* attackTime,
+	void setOscillatorParameters(float* attackTime,
 						float* decayTime,
 						float* sustainTime,
-						float* releaseTime)
+						float* releaseTime,
+						float* oscillatorType)
 	{
 
 		mEnvelope1.setAttack(jmap(*attackTime, 0.0f, 1.0f, 0.0f, 5000.0f));
 		mEnvelope1.setDecay(jmap(*decayTime, 0.0f, 1.0f, 1.0f, 500.0f));
 		mEnvelope1.setSustain(jmap(*sustainTime, 0.0f, 1.0f, 0.1f, 1.0f));
 		mEnvelope1.setRelease(jmap(*releaseTime, 0.0f, 1.0f, 0.0f, 5000.0f));
+		mOscillatorType = *oscillatorType;
 	
-	}
-
-	void setOscillatorType(float* oscillatorType)
-	{
-		std::cout << *oscillatorType;
-		mWaveform = *oscillatorType;
 	}
 
 	double getOscillatorType()
 	{
-		switch ((int)mWaveform)
+		switch ((int)mOscillatorType)
 		{
 		case 0:
 			return mOscillator1.sinewave(frequency);
@@ -62,6 +58,42 @@ public:
 			break;
 		}
 
+	}
+
+	void setFilterParameters(float* filterType,
+							float* filterCutoff,
+							float* filterResonance)
+	{
+		mFilterType = *filterType;
+		mFilterCutoff = jmap(*filterCutoff, 0.0f, 1.0f, 100.0f, 15000.0f);
+		mFilterResonance = jmap(*filterResonance, 0.0f, 1.0f, 1.0f, 1000.0f);
+	}
+
+	double renderVoice()
+	{
+
+			switch ((int) mFilterType)
+			{
+			case 0:
+				return mFilter1.lores(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				break;
+			case 1:
+				return mFilter1.hires(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				break;
+			case 2:
+				return mFilter1.lores(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				break;
+			default:
+				return mFilter1.lores(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				break;
+			}
+		
+
+	}
+
+	double applyEnvelope()
+	{
+		return mEnvelope1.adsr(getOscillatorType(), mEnvelope1.trigger) * level;
 	}
 
 	void startNote(int midiNoteNumber, 
@@ -94,13 +126,14 @@ public:
 
 		for (int sample = 0; sample < numSamples; ++sample) 
 		{
-			double envelopedSound = mEnvelope1.adsr(getOscillatorType(), mEnvelope1.trigger) * level;
-			double filteredSound = mFilter1.lores(envelopedSound, 100, 0.1f);
 
+			//Note: renderVoice() calls applyEnvelope() within the call to the filter class from maximilian. 
+			//This cuts out a few steps. But it's not exactly intuitive. 
+		
 			for (int channel = 0; channel < outputBuffer.getNumChannels(); ++channel)
 			{
 
-				outputBuffer.addSample(channel, startSample, filteredSound);
+				outputBuffer.addSample(channel, startSample, renderVoice());
 			
 			}
 
@@ -125,7 +158,10 @@ private:
 
 	double level;
 	double frequency;
-	int mWaveform;
+	float mOscillatorType;
+	float mFilterType;
+	float mFilterCutoff;
+	float mFilterResonance;
 
 	maxiOsc mOscillator1;
 	maxiEnv mEnvelope1;

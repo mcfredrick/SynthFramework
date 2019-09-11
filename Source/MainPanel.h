@@ -16,6 +16,8 @@
 
 #include "ADSRPanel.h"
 
+#include "FilterPanel.h"
+
 
 class MainPanel
 	:	public PanelBase
@@ -29,5 +31,6 @@ private:
 
 	ScopedPointer<OscillatorPanel> mOscillatorPanel;
 	ScopedPointer<ADSRPanel> mADSRPanel;
+	ScopedPointer<FilterPanel> mFilterPanel;
 
 };

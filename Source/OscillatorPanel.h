@@ -33,5 +33,7 @@ private:
 	
 	ScopedPointer<ParameterComboBox> mOscillatorComboBox;
 
+	ScopedPointer<ParameterComboBox> mFilterComboBox;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (OscillatorPanel)
 };

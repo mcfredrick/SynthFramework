@@ -18,6 +18,9 @@ enum Parameter
 	kParameter_Sustain,
 	kParameter_Release,
 	kParameter_WaveType,
+	kParameter_FilterCutoff,
+	kParameter_FilterResonance,
+	kParameter_FilterType,
 	kParameter_TotalNumParameters
 };
 
@@ -28,6 +31,9 @@ static std::string ParameterID[kParameter_TotalNumParameters] =
 	"Sustain",
 	"Release",
 	"WaveType",
+	"FilterCutoff",
+	"FilterResonance",
+	"FilterType",
 };
 
 static std::string ParameterLabel[kParameter_TotalNumParameters] =
@@ -37,6 +43,9 @@ static std::string ParameterLabel[kParameter_TotalNumParameters] =
 	"Sustain",
 	"Release",
 	"Wave Type",
+	"Cutoff",
+	"Resonance",
+	"Filter Type",
 };
 
 static float ParameterDefaultValue[kParameter_TotalNumParameters] =
@@ -45,5 +54,8 @@ static float ParameterDefaultValue[kParameter_TotalNumParameters] =
 	0.5f, //Decay
 	0.5f, //Sustain
 	0.5f, //Release
-	0.0f  //WaveType
+	0.0f, //WaveType
+	0.1f, //Filter Cutoff
+	0.1f, //Filter Resonance
+	0.0f, //Filter Type
 };

@@ -41,6 +41,8 @@
     <GROUP id="{3FC31F8D-F670-801A-95AF-A8BA6D9BA13C}" name="Panels">
       <FILE id="Jijw9D" name="ADSRPanel.cpp" compile="1" resource="0" file="Source/ADSRPanel.cpp"/>
       <FILE id="jU9SVv" name="ADSRPanel.h" compile="0" resource="0" file="Source/ADSRPanel.h"/>
+      <FILE id="FAGJjC" name="FilterPanel.cpp" compile="1" resource="0" file="Source/FilterPanel.cpp"/>
+      <FILE id="ySsaQp" name="FilterPanel.h" compile="0" resource="0" file="Source/FilterPanel.h"/>
       <FILE id="qE91j5" name="MainPanel.cpp" compile="1" resource="0" file="Source/MainPanel.cpp"/>
       <FILE id="zyUCI9" name="MainPanel.h" compile="0" resource="0" file="Source/MainPanel.h"/>
       <FILE id="swMTsT" name="OscillatorPanel.cpp" compile="1" resource="0"

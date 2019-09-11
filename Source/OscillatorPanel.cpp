@@ -33,6 +33,19 @@ OscillatorPanel::OscillatorPanel(SynthFrameworkAudioProcessor* inProcessor)
 		dontSendNotification);
 
 	addAndMakeVisible(*mOscillatorComboBox);	
+
+	mFilterComboBox =
+		new ParameterComboBox(inProcessor->parameterTree, ParameterID[kParameter_FilterType]);
+	mFilterComboBox->setBounds(OSCILLATOR_PANEL_WIDTH - width, 0, width, height);
+	mFilterComboBox->addItem("High Pass", 1);
+	mFilterComboBox->addItem("Low Pass", 2);
+	mFilterComboBox->addItem("Band Pass", 3);
+	mFilterComboBox->setJustificationType(Justification::centred);
+	mFilterComboBox->setSelectedItemIndex((int)mProcessor->getParameter(kParameter_FilterType),
+		dontSendNotification);
+
+	addAndMakeVisible(*mFilterComboBox);
+
 }
 
 OscillatorPanel::~OscillatorPanel()

@@ -15,19 +15,13 @@
 ADSRPanel::ADSRPanel(SynthFrameworkAudioProcessor* inProcessor)
 	: PanelBase(inProcessor)
 {
-	setSize(MAIN_PANEL_WIDTH, MAIN_PANEL_HEIGHT- OSCILLATOR_PANEL_HEIGHT);
-	
-	//setBounds(0, //x
-		//	  MAIN_PANEL_HEIGHT, //y
-			//  MAIN_PANEL_WIDTH, //width
-			  //100//MAIN_PANEL_HEIGHT - OSCILLATOR_PANEL_HEIGHT //height
-			  //);
+	setSize(ADSR_PANEL_WIDTH, ADSR_PANEL_HEIGHT);
 
 	mSliders.clear();
 
 	const int slider_size = 56;
-	int x = 130;
-	int y = (getHeight() * 0.5) - (slider_size * 0.5);
+	int x = 56;												//first slider x position
+	int y = (getHeight() * 0.5) - (slider_size * 0.5);		//first slider y position
 
 	//construct the slider
 	ParameterSlider* attack = new ParameterSlider(inProcessor->parameterTree, ParameterID[kParameter_Attack], ParameterLabel[kParameter_Attack]);
