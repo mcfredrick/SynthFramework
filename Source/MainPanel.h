@@ -11,12 +11,10 @@
 #pragma once
 
 #include "PanelBase.h"
-
 #include "OscillatorPanel.h"
-
 #include "ADSRPanel.h"
-
 #include "FilterPanel.h"
+#include "VisualiserPanel.h"
 
 
 class MainPanel
@@ -32,5 +30,6 @@ private:
 	ScopedPointer<OscillatorPanel> mOscillatorPanel;
 	ScopedPointer<ADSRPanel> mADSRPanel;
 	ScopedPointer<FilterPanel> mFilterPanel;
+	ScopedPointer<VisualiserPanel> mVisualiserPanel;
 
 };

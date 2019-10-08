@@ -53,6 +53,15 @@ public:
 		case 2:
 			return mOscillator1.square(frequency);
 			break;
+		case 3:
+			return mOscillator1.triangle(frequency);
+			break;
+		case 4:
+			return mOscillator1.phasor(frequency);
+			break;
+		case 5:
+			return mOscillator1.pulse(frequency, 0.5);
+			break;
 		default: 
 			return mOscillator1.sinewave(frequency);
 			break;
@@ -65,26 +74,29 @@ public:
 							float* filterResonance)
 	{
 		mFilterType = *filterType;
-		mFilterCutoff = jmap(*filterCutoff, 0.0f, 1.0f, 100.0f, 15000.0f);
-		mFilterResonance = jmap(*filterResonance, 0.0f, 1.0f, 1.0f, 1000.0f);
+		mFilterCutoff = jmap(*filterCutoff, 0.0f, 1.0f, 20.0f, 10000.0f);		//map the cutoff values to appropriate frequencies	
+		mFilterResonance = jmap(*filterResonance, 0.0f, 1.0f, 1.0f, 5.0f);		//map the resonance to an appropriate range
 	}
 
 	double renderVoice()
 	{
-
+		//set the filter type based on the combo box choice
 			switch ((int) mFilterType)
 			{
 			case 0:
-				return mFilter1.lores(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				return applyEnvelope();
 				break;
 			case 1:
-				return mFilter1.hires(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				return mFilter1.lores(applyEnvelope(), mFilterCutoff, mFilterResonance);
 				break;
 			case 2:
+				return mFilter1.hires(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				break;
+			case 3:
 				return mFilter1.lores(applyEnvelope(), mFilterCutoff, mFilterResonance);
 				break;
 			default:
-				return mFilter1.lores(applyEnvelope(), mFilterCutoff, mFilterResonance);
+				return applyEnvelope();
 				break;
 			}
 		

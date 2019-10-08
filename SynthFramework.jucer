@@ -51,6 +51,10 @@
             file="Source/OscillatorPanel.h"/>
       <FILE id="RK2A1r" name="PanelBase.cpp" compile="1" resource="0" file="Source/PanelBase.cpp"/>
       <FILE id="vLHI7C" name="PanelBase.h" compile="0" resource="0" file="Source/PanelBase.h"/>
+      <FILE id="fCaDvH" name="VisualiserPanel.cpp" compile="1" resource="0"
+            file="Source/VisualiserPanel.cpp"/>
+      <FILE id="MwAqOX" name="VisualiserPanel.h" compile="0" resource="0"
+            file="Source/VisualiserPanel.h"/>
     </GROUP>
     <GROUP id="{2FD06F8F-56FB-F592-A15A-55C5DC689059}" name="Parameter Control">
       <FILE id="nTbrMP" name="ParameterComboBox.cpp" compile="1" resource="0"

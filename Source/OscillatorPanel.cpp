@@ -28,6 +28,9 @@ OscillatorPanel::OscillatorPanel(SynthFrameworkAudioProcessor* inProcessor)
 	mOscillatorComboBox->addItem("Sine", 1);
 	mOscillatorComboBox->addItem("Saw", 2);
 	mOscillatorComboBox->addItem("Square", 3);
+	mOscillatorComboBox->addItem("Triangle", 4);
+	mOscillatorComboBox->addItem("Phasor", 5);
+	mOscillatorComboBox->addItem("Pulse", 6);
 	mOscillatorComboBox->setJustificationType(Justification::centred);
 	mOscillatorComboBox->setSelectedItemIndex((int)mProcessor->getParameter(kParameter_WaveType),
 		dontSendNotification);
@@ -37,9 +40,11 @@ OscillatorPanel::OscillatorPanel(SynthFrameworkAudioProcessor* inProcessor)
 	mFilterComboBox =
 		new ParameterComboBox(inProcessor->parameterTree, ParameterID[kParameter_FilterType]);
 	mFilterComboBox->setBounds(OSCILLATOR_PANEL_WIDTH - width, 0, width, height);
-	mFilterComboBox->addItem("High Pass", 1);
-	mFilterComboBox->addItem("Low Pass", 2);
-	mFilterComboBox->addItem("Band Pass", 3);
+	mFilterComboBox->addItem("None", 1);
+	mFilterComboBox->addItem("High Pass", 2);
+	mFilterComboBox->addItem("Low Pass", 3);
+	mFilterComboBox->addItem("Band Pass", 4);
+	
 	mFilterComboBox->setJustificationType(Justification::centred);
 	mFilterComboBox->setSelectedItemIndex((int)mProcessor->getParameter(kParameter_FilterType),
 		dontSendNotification);

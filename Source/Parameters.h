@@ -55,7 +55,7 @@ static float ParameterDefaultValue[kParameter_TotalNumParameters] =
 	0.5f, //Sustain
 	0.5f, //Release
 	0.0f, //WaveType
-	0.1f, //Filter Cutoff
-	0.1f, //Filter Resonance
+	0.5f, //Filter Cutoff
+	0.5f, //Filter Resonance
 	0.0f, //Filter Type
 };
